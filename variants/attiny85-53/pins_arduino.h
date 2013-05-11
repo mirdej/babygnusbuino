@@ -43,7 +43,7 @@
 #define NUM_DIGITAL_PINS            6
 #define NUM_ANALOG_INPUTS           3
 #define analogInputToDigitalPin(p)  (p)
-#define digitalPinHasPWM(p)         ((p==1) || (p==0) || (p==3) || (p==4))
+#define digitalPinHasPWM(p)         ((p==1) || (p==0)) || (p==3) || (p==4))
 
 static const uint8_t SS   = 4;
 static const uint8_t MOSI = 0;
