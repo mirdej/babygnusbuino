@@ -32,8 +32,8 @@ section at the end of this file).
 	#define USB_CFG_DPLUS_BIT       3
 	#define USB_CFG_CLOCK_KHZ       (F_CPU/1000)
 	#define USB_CFG_CHECK_CRC       0
-	#define USB_CFG_PULLUP_IOPORTNAME   B
-	#define USB_CFG_PULLUP_BIT          0
+	//#define USB_CFG_PULLUP_IOPORTNAME   B
+	//#define USB_CFG_PULLUP_BIT          0
 #else
 #define USB_CFG_IOPORTNAME      D
 /* This is the port where the USB bus is connected. When you configure it to
@@ -70,13 +70,13 @@ section at the end of this file).
 
 /* ----------------------- Optional Hardware Config ------------------------ */
 
- #define USB_CFG_PULLUP_IOPORTNAME   D
+// #define USB_CFG_PULLUP_IOPORTNAME   B
 /* If you connect the 1.5k pullup resistor from D- to a port pin instead of
  * V+, you can connect and disconnect the device from firmware by calling
  * the macros usbDeviceConnect() and usbDeviceDisconnect() (see usbdrv.h).
  * This constant defines the port on which the pullup resistor is connected.
  */
-#define USB_CFG_PULLUP_BIT          7
+//#define USB_CFG_PULLUP_BIT          2
 /* This constant defines the bit number in USB_CFG_PULLUP_IOPORT (defined
  * above) where the 1.5k pullup resistor is connected. See description
  * above for details.

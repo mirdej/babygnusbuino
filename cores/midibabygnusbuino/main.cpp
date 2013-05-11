@@ -228,7 +228,7 @@ int main(void)
 	wdt_enable(WDTO_1S);	// enable watchdog timer
 	
 #if defined(__AVR_ATtiny85__)
-	DDRB = 1; 	//PB0 is output
+	DDRB = (1 << 2); 	//PB2 is output
 #else
 	// set PORT D Directions -> 1110 0000, output 0 on unconnected PD7
 	DDRD = 0xe0; 	// 1110 0000 -> set PD0..PD4 to inputs -> USB pins
