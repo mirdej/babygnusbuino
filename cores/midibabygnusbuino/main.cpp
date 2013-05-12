@@ -1,8 +1,9 @@
 #include <Arduino.h>
 #include <avr/wdt.h>
+#include <util/delay.h>
 #include "midignusb.h"
 #include "usbdrv.h"
-#include "../../../../libraries/MIDI/MIDI.h"	// not very clean, I know
+#include "../../../../libraries/GnusbuinoMIDI/GnusbuinoMIDI.h"	// not very clean, I know
 
 
 
@@ -36,25 +37,20 @@ void statusLedBlink(StatusLeds led) {
 // ------------------------------------------------------------------------------
 // dummy function doing the jump to bootloader section (Adress 1C00 on Atmega644)
 
-void (*jumpToBootloader)(void) = (void (*)(void))0xF800; __attribute__ ((unused))
-
 void startBootloader(void) {
-		
-		
-		MCUCSR &= ~(1 << PORF);			// clear power on reset flag
-										// this will hint the bootloader that it was forced
-	
+
 		cli();							// turn off interrupts
 		wdt_disable();					// disable watchdog timer
 		usbDeviceDisconnect(); 			// disconnect gnusb from USB bus
+		_delay_ms(100);
 		
-		ADCSRA &= ~(( 1 << ADIE) | ( 1 << ADEN));	// disable ADC interrupts
-													// disable ADC (turn off ADC power)
+		USB_INTR_ENABLE = 0;
+	    USB_INTR_CFG = 0;       /* also reset config bits */
 
-		statusLedOff(StatusLed_Yellow);		
-		statusLedOff(StatusLed_Green);
-
-		jumpToBootloader();
+		wdt_enable(WDTO_30MS);	// enable watchdog timer
+			while(1) {			// let WDT reset gnusb
+		}
+		
 }
 
 
@@ -228,7 +224,7 @@ int main(void)
 	wdt_enable(WDTO_1S);	// enable watchdog timer
 	
 #if defined(__AVR_ATtiny85__)
-	DDRB = (1 << 2); 	//PB2 is output
+	//DDRB = (1 << 2); 	//PB2 is output
 #else
 	// set PORT D Directions -> 1110 0000, output 0 on unconnected PD7
 	DDRD = 0xe0; 	// 1110 0000 -> set PD0..PD4 to inputs -> USB pins
@@ -250,9 +246,7 @@ int main(void)
 
     usbDeviceConnect();
     sei();
-	
-	statusLedOn(StatusLed_Green);
-	
+		
 	setup();
 
 	for (;;) {

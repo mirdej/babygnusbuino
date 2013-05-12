@@ -8299,12 +8299,12 @@ Source: www.kingbright.com</description>
 <part name="U$2" library="anyma-lib" deviceset="USB-BAREBONE" device=""/>
 <part name="IC1" library="anyma-lib" deviceset="TINY85" device="PU" technology="-20"/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
-<part name="R3" library="rcl" deviceset="R-EU_" device="R1206" value="1k6"/>
-<part name="LED1" library="led" deviceset="LED" device="KA-3528ASYC"/>
-<part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="R6" library="rcl" deviceset="R-EU_" device="R1206" value="1k6"/>
 <part name="LED2" library="led" deviceset="LED" device="KA-3528ASYC"/>
 <part name="P+4" library="supply1" deviceset="VCC" device=""/>
+<part name="LED1" library="led" deviceset="LED" device="KA-3528ASYC"/>
+<part name="R5" library="rcl" deviceset="R-EU_" device="R1206" value="1k6"/>
+<part name="GND3" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8328,18 +8328,18 @@ Source: www.kingbright.com</description>
 </instance>
 <instance part="GND4" gate="1" x="-35.56" y="60.96" rot="MR0"/>
 <instance part="R4" gate="G$1" x="-45.72" y="76.2" rot="R90"/>
-<instance part="P+5" gate="VCC" x="12.7" y="114.3" rot="MR0"/>
-<instance part="GND5" gate="1" x="12.7" y="101.6" rot="MR0"/>
-<instance part="C2" gate="G$1" x="12.7" y="109.22"/>
+<instance part="P+5" gate="VCC" x="38.1" y="114.3" rot="MR0"/>
+<instance part="GND5" gate="1" x="38.1" y="101.6" rot="MR0"/>
+<instance part="C2" gate="G$1" x="38.1" y="109.22"/>
 <instance part="U$2" gate="G$1" x="-58.42" y="68.58" rot="MR0"/>
 <instance part="IC1" gate="G$1" x="30.48" y="66.04"/>
 <instance part="P+3" gate="VCC" x="-45.72" y="93.98" rot="MR0"/>
-<instance part="R3" gate="G$1" x="-2.54" y="48.26" rot="R90"/>
-<instance part="LED1" gate="G$1" x="-2.54" y="58.42"/>
-<instance part="GND3" gate="1" x="-2.54" y="40.64" rot="MR0"/>
 <instance part="R6" gate="G$1" x="-2.54" y="78.74" rot="R90"/>
 <instance part="LED2" gate="G$1" x="-2.54" y="88.9"/>
 <instance part="P+4" gate="VCC" x="-2.54" y="93.98" rot="MR0"/>
+<instance part="LED1" gate="G$1" x="10.16" y="83.82" rot="R180"/>
+<instance part="R5" gate="G$1" x="10.16" y="93.98" rot="R90"/>
+<instance part="GND3" gate="1" x="10.16" y="101.6" rot="MR180"/>
 </instances>
 <busses>
 </busses>
@@ -8367,7 +8367,7 @@ Source: www.kingbright.com</description>
 <pinref part="GND1" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="R3" gate="G$1" pin="1"/>
+<pinref part="R5" gate="G$1" pin="2"/>
 <pinref part="GND3" gate="1" pin="GND"/>
 </segment>
 </net>
@@ -8426,7 +8426,6 @@ Source: www.kingbright.com</description>
 <wire x1="2.54" y1="60.96" x2="7.62" y2="66.04" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="PB3/PCINT3/CLKI/ADC3"/>
 <wire x1="7.62" y1="66.04" x2="15.24" y2="66.04" width="0.1524" layer="91"/>
-<pinref part="LED1" gate="G$1" pin="A"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -8442,16 +8441,24 @@ Source: www.kingbright.com</description>
 <wire x1="-2.54" y1="71.12" x2="-2.54" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="R3" gate="G$1" pin="2"/>
-<pinref part="LED1" gate="G$1" pin="C"/>
-</segment>
-</net>
 <net name="N$8" class="0">
 <segment>
 <pinref part="R6" gate="G$1" pin="2"/>
 <pinref part="LED2" gate="G$1" pin="C"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="LED1" gate="G$1" pin="C"/>
+<pinref part="R5" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="PB0/PCINT0/AIN0/OC0A/0C1A/AREF/MOSI"/>
+<pinref part="LED1" gate="G$1" pin="A"/>
+<wire x1="15.24" y1="73.66" x2="10.16" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="10.16" y1="73.66" x2="10.16" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
