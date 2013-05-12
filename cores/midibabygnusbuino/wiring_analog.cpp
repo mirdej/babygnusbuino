@@ -50,6 +50,14 @@ int analogRead(uint8_t pin)
 {
 
 	uint8_t low, high;
+	
+	// convert pin index numbers to ADC mux channel
+	if (pin == 2) {pin = 1;}
+	else if (pin == 4) {pin = 2;}
+	else return -1;
+	
+	DDRB &= ~(1 << pin);  // set pin to input
+	
 
 /*	if (!ad_initialized) {
 		adInit();

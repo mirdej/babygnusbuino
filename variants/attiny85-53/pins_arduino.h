@@ -41,7 +41,7 @@
 #include <avr/pgmspace.h>
 
 #define NUM_DIGITAL_PINS            6
-#define NUM_ANALOG_INPUTS           3
+#define NUM_ANALOG_INPUTS           2
 #define analogInputToDigitalPin(p)  (p)
 #define digitalPinHasPWM(p)         ((p==1) || (p==0)) || (p==3) || (p==4))
 
@@ -54,10 +54,8 @@ static const uint8_t SDA = 0;
 static const uint8_t SCL = 2;
 static const uint8_t LED_BUILTIN = 5;
 
-static const uint8_t A0 = 5;
-static const uint8_t A1 = 2;
-static const uint8_t A2 = 4;
-static const uint8_t A3 = 3;
+static const uint8_t A2 = 2;
+static const uint8_t A4 = 4;
 
 
 
