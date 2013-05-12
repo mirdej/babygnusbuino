@@ -514,6 +514,12 @@ void PushMagicWord (void)
     asm volatile("push r16"::);
     asm volatile("ldi r16, 0x07"::);
     asm volatile("push r16"::);
+    
+    		    // put magic word to bottom of stack before jumping to the bootloader
+  //  	*(uint8_t*)(RAMEND) 	= 0xB0;
+   //		*(uint8_t*)(RAMEND-1) 	= 0x07;
+   		
+
 }
 #endif
 
@@ -600,7 +606,16 @@ int __attribute__((noreturn)) main(void)
 
 
     /* initialize  */
-    wdt_disable();      /* main app may have enabled watchdog */
+  //  wdt_disable();      /* main app may have enabled watchdog */
+//  _WDR();
+
+//_WDR();
+/* Clear WDRF in MCUSR */
+MCUSR = 0x00;
+/* Write logical one to WDCE and WDE */ WDTCR |= (1<<WDCE) | (1<<WDE);
+/* Turn off WDT */
+WDTCR = 0x00;
+
 #ifdef TINY85MODE
     tiny85FlashInit();
 #endif
@@ -618,12 +633,13 @@ int __attribute__((noreturn)) main(void)
     GICR = (1 << IVSEL); /* move interrupts to boot flash section */
 #	endif
 #endif
+   		
+
 
     if(bootLoaderCondition()){
 
         initForUsbConnectivity();
         do{
-
 
             usbPoll();
             _delay_us(100);
@@ -641,7 +657,6 @@ int __attribute__((noreturn)) main(void)
 #endif
         }while(bootLoaderCondition());  /* main event loop */
     }
-
 
     leaveBootloader();
 }
