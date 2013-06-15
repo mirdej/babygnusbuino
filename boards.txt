@@ -38,3 +38,21 @@ mbg2.build.core= midibabygnusbuino
 mbg2.build.variant=attiny85-53
 
 ##############################################################
+
+mbg2.name=MIDIbabygnusbuino2
+mbg2.upload.protocol=usbasp
+mbg2.upload.maximum_size=5375
+mbg2.upload.speed=9600
+mbg2.upload.disable_flushing=true
+
+mbg2.bootloader.low_fuses=E1
+mbg2.bootloader.high_fuses=0xDD
+mbg2.bootloader.extended_fuses=0xFE
+mbg2.bootloader.path= attiny85
+mbg2.bootloader.file=attiny85.hex
+mbg2.build.mcu=attiny85
+mbg2.build.f_cpu=16500000L
+mbg2.build.core= midibabygnusbuino
+mbg2.build.variant=attiny85-53
+
+##############################################################
