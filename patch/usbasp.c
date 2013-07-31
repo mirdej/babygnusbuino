@@ -279,7 +279,6 @@ int gnubl(void)
             }
         }
     }
-    usb_close(handle);
     if (!counter) {
 	    	//printf ("\nNo devices found with manufacturer \"anyma.ch\".\n\n");
     }
