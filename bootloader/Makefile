@@ -22,8 +22,8 @@ DEVICE = attiny85
 BOOTLOADER_ADDRESS = 1500
 LOCKOPT = -U lock:w:0x2f:m
 
-#PROGRAMMER = -c USBasp
-PROGRAMMER = -c stk500hvsp -P avrdoper
+PROGRAMMER = -c USBasp
+#PROGRAMMER = -c stk500hvsp -P avrdoper
 #PROGRAMMER = -c stk500v2 -P avrdoper
 # PROGRAMMER contains AVRDUDE options to address your programmer
 
