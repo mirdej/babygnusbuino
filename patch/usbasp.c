@@ -281,6 +281,8 @@ int gnubl(void)
     }
     if (!counter) {
 	    	//printf ("\nNo devices found with manufacturer \"anyma.ch\".\n\n");
+    } else {
+    	sleep(1);  // give some more time for USBasp to appear
     }
     	printf("--> Uploading\n");
     return 0;
