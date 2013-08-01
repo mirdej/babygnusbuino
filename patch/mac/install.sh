@@ -8,4 +8,5 @@ mv $BINPATH"avrdude" $BINPATH"avrdude_bak"
 mv $ETCPATH"avrdude.conf" $ETCPATH"avrdude.conf_bak"
 cp avrdude $BINPATH
 cp avrdude.conf $ETCPATH
+cp libusb /usr/local/lib/libusb-0.1.4.dylib
 echo "Done"
