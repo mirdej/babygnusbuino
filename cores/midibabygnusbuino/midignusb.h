@@ -73,7 +73,7 @@ void sendNote(unsigned char key, unsigned char velocity);
 // Appendix B. Example: Simple MIDI Adapter (Informative)
 // B.1 Device Descriptor
 //
-static PROGMEM char deviceDescrMIDI[] = {	/* USB device descriptor */
+static PROGMEM const char deviceDescrMIDI[] = {	/* USB device descriptor */
 	18,			/* sizeof(usbDescriptorDevice): length of descriptor in bytes */
 	USBDESCR_DEVICE,	/* descriptor type */
 	0x10, 0x01,		/* USB version supported */
@@ -91,7 +91,7 @@ static PROGMEM char deviceDescrMIDI[] = {	/* USB device descriptor */
 };
 
 // B.2 Configuration Descriptor
-static PROGMEM char configDescrMIDI[] = {	/* USB configuration descriptor */
+static PROGMEM const char configDescrMIDI[] = {	/* USB configuration descriptor */
 	9,			/* sizeof(usbDescrConfig): length of descriptor in bytes */
 	USBDESCR_CONFIG,	/* descriptor type */
 	101, 0,			/* total length of data returned (including inlined descriptors) */
