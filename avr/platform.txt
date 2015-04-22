@@ -67,10 +67,15 @@ recipe.size.regex.eeprom=^(?:\.eeprom)\s+([0-9]+).*
 
 # AVR Uploader/Programmers tools
 # ------------------------------
+# base path for the hacked version of avrdude
+tools.avrdude.path={runtime.platform.path}/patch
 
-tools.avrdude.path={runtime.tools.avrdude.path}
-tools.avrdude.cmd.path={path}/bin/avrdude
-tools.avrdude.config.path={path}/etc/avrdude.conf
+# hacked avrdude for linux: YOU NEED TO PUT THE HACKED AVRDUDE + CONFFILE HERE YOURSELF!!!
+# --> download and compile avrdude 6.0rc1 from source with the hacked usbasp.c file which you'll find in the patch folder
+tools.avrdude.cmd.path.linux={path}/linux/avrdude
+tools.avrdude.config.path.linux={path}/linux/avrdude.conf
+
+# TODO define paths for mac / windows
 
 tools.avrdude.upload.params.verbose=-v
 tools.avrdude.upload.params.quiet=-q -q
