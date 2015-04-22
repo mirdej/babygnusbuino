@@ -3,3 +3,6 @@
 *.lst
 *.map
 *.bin
+
+avr/patch/linux/avrdude
+avr/patch/linux/avrdude.conf
