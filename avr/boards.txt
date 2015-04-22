@@ -2,19 +2,21 @@
 ##############################################################
 
 bg2.name=Babygnusbuino2
+
 bg2.upload.protocol=usbasp
 bg2.upload.maximum_size=5375
 bg2.upload.speed=9600
 bg2.upload.disable_flushing=true
 
-
+bg2.bootloader.tool=avrdude
 bg2.bootloader.low_fuses=E1
 bg2.bootloader.high_fuses=0x5D
 bg2.bootloader.extended_fuses=0xFE
-bg2.bootloader.path= attiny85
-bg2.bootloader.file=attiny85.hex
+bg2.bootloader.file=attiny85/attiny85.hex
+
 bg2.build.mcu=attiny85
 bg2.build.f_cpu=16500000L
+bg2.build.board=AVR_BG2
 bg2.build.core=arduino
 bg2.build.variant=attiny85-53
 
@@ -22,19 +24,22 @@ bg2.build.variant=attiny85-53
 ##############################################################
 
 mbg2.name=MIDIbabygnusbuino2
+
 mbg2.upload.protocol=usbasp
 mbg2.upload.maximum_size=5375
 mbg2.upload.speed=9600
 mbg2.upload.disable_flushing=true
 
+mbg2.bootloader.tool=avrdude
 mbg2.bootloader.low_fuses=E1
 mbg2.bootloader.high_fuses=0x5D
 mbg2.bootloader.extended_fuses=0xFE
-mbg2.bootloader.path= attiny85
-mbg2.bootloader.file=attiny85.hex
+mbg2.bootloader.file=attiny85/attiny85.hex
+
 mbg2.build.mcu=attiny85
 mbg2.build.f_cpu=16500000L
-mbg2.build.core= midibabygnusbuino
+mbg2.build.board=AVR_MBG2
+mbg2.build.core=midibabygnusbuino
 mbg2.build.variant=attiny85-53
 
 ##############################################################

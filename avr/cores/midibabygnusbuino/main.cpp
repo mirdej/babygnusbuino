@@ -3,7 +3,7 @@
 #include <util/delay.h>
 #include "midignusb.h"
 #include "usbdrv.h"
-#include "../../../../libraries/GnusbuinoMIDI/GnusbuinoMIDI.h"	// not very clean, I know
+#include "../../../../../libraries/GnusbuinoMIDI/GnusbuinoMIDI.h"	// not very clean, I know
 
 
 
@@ -11,8 +11,8 @@
 // - Status Leds
 // ------------------------------------------------------------------------------
 // 							(on means  set to 0 as we sink the LEDs )
- 
- 
+
+
 
 unsigned long blinkstop;
 
@@ -43,14 +43,14 @@ void startBootloader(void) {
 		wdt_disable();					// disable watchdog timer
 		usbDeviceDisconnect(); 			// disconnect gnusb from USB bus
 		_delay_ms(100);
-		
+
 		USB_INTR_ENABLE = 0;
 	    USB_INTR_CFG = 0;       /* also reset config bits */
 
 		wdt_enable(WDTO_30MS);	// enable watchdog timer
 			while(1) {			// let WDT reset gnusb
 		}
-		
+
 }
 
 
@@ -91,12 +91,12 @@ unsigned char usbFunctionSetup(unsigned char data[8])
 		    USBRQ_DIR_HOST_TO_DEVICE) {}
 	}
 	switch (data[1]) {
-// 								----------------------------   Start Bootloader for reprogramming the gnusb    		
+// 								----------------------------   Start Bootloader for reprogramming the gnusb
 		case GNUSBCORE_CMD_START_BOOTLOADER:
 
 			startBootloader();
 			break;
-				
+
 		default:
 			break;
 	}
@@ -105,7 +105,7 @@ unsigned char usbFunctionSetup(unsigned char data[8])
 
 
 // ---------------------------------------------------------------------------
-//  usbFunctionRead                                                          
+//  usbFunctionRead
 // ---------------------------------------------------------------------------
 
 unsigned char usbFunctionRead(unsigned char * data, unsigned char len)
@@ -147,9 +147,9 @@ void usbFunctionWriteOut(unsigned char * data, unsigned char len)
 	statusLedBlink(StatusLed_Yellow);
 
 	while (len >= sizeof(midi_msg)) {
-	
+
 		midi_msg* msg = (midi_msg*)data;
-		
+
 		MIDI.receiveMIDI(msg->byte[0],msg->byte[1],msg->byte[2]);
 
 		data += sizeof(midi_msg);
@@ -172,14 +172,14 @@ void doPeriodical(void) {
 				statusLedOff(StatusLed_Yellow);
 				blinkstop = 0;
 			}
-		}	
-		
+		}
+
 		usbPoll();
-		MIDI.sendMIDI();        
+		MIDI.sendMIDI();
 
 
 		wdt_reset();
-}		
+}
 
 
 
@@ -196,11 +196,11 @@ void adInit(void){
 										// Set ADC-Prescaler (-> precision vs. speed)
 
 	ADCSRA = ((ADCSRA & ~ADC_PRESCALE_MASK) | ADC_PRESCALE_DIV64); // Set ADC Reference Voltage to AVCC
-	
+
 	#if defined(__AVR_ATtiny85__)
 		ADMUX = 0;	// make sure we don't have AREF on PB0 which is used as a usb pullup
 	#else			// for bigger chips, use AREF with capacitor
-		ADMUX |= (1 << REFS0);		
+		ADMUX |= (1 << REFS0);
 		ADMUX &= ~(1 << REFS1);
 	#endif
 
@@ -222,7 +222,7 @@ int main(void)
 	adInit();
 
 	wdt_enable(WDTO_1S);	// enable watchdog timer
-	
+
 #if defined(__AVR_ATtiny85__)
 	//DDRB = (1 << 2); 	//PB2 is output
 #else
@@ -234,26 +234,26 @@ int main(void)
 	unsigned char   i = 0;
 
     usbInit();
-  
-    // enforce USB re-enumerate: 
 
-	cli();    
-    usbDeviceDisconnect();  // do this while interrupts are disabled 
-    while(--i){         // fake USB disconnect for > 250 ms 
+    // enforce USB re-enumerate:
+
+	cli();
+    usbDeviceDisconnect();  // do this while interrupts are disabled
+    while(--i){         // fake USB disconnect for > 250 ms
         wdt_reset();
         delay(1);
     }
 
     usbDeviceConnect();
     sei();
-		
+
 	setup();
 
 	for (;;) {
-		loop();	
+		loop();
 		doPeriodical();
 	}
-        
+
 	return 0;
 }
 
