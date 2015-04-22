@@ -18,7 +18,7 @@
 // USB driver by Objective Development (see http://www.obdev.at/products/avrusb/index.html)
 #include "usbdrv.h"
 
-#include "../../../../../libraries/GnusbuinoMIDI/GnusbuinoMIDI.h"	// not very clean, I know
+#include "../../../../../libraries/GnusbuinoMIDI/src/GnusbuinoMIDI.h"	// not very clean, I know
 
 //MIDIQueue midiSendQueue;
 MIDIClass MIDI;
