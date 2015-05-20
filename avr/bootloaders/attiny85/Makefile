@@ -13,7 +13,7 @@
 #     make fuse    			# to set the clock generator, boot section size etc.
 #     make flash   			# to load the boot loader into flash
 #     make lock    			# to protect the boot loader from overwriting
-#     make disablereset		# for ATtiny85 target - to use external reset line for IO (CAUTION: this is not easy to enable again, see README) 
+#     make disablereset		# for ATtiny85 target - to use external reset line for IO (CAUTION: this is not easy to enable again, see README)
 
 F_CPU = 16500000
 DEVICE = attiny85
@@ -23,6 +23,7 @@ BOOTLOADER_ADDRESS = 1500
 LOCKOPT = -U lock:w:0x2f:m
 
 PROGRAMMER = -c USBasp
+#PROGRAMMER = -c usbtiny
 #PROGRAMMER = -c stk500hvsp -P avrdoper
 #PROGRAMMER = -c stk500v2 -P avrdoper
 # PROGRAMMER contains AVRDUDE options to address your programmer
@@ -114,7 +115,7 @@ FUSEOPT = $(FUSEOPT_t85_DISABLERESET)
 #
 # Fuse high byte:
 # 0xdd = 1 1 0 1   1 1 0 1
-#        ^ ^ ^ ^   ^ \-+-/ 
+#        ^ ^ ^ ^   ^ \-+-/
 #        | | | |   |   +------ BODLEVEL 2..0 (brownout trigger level -> 2.7V)
 #        | | | |   +---------- EESAVE (preserve EEPROM on Chip Erase -> not preserved)
 #        | | | +-------------- WDTON (watchdog timer always on -> disable)
@@ -124,7 +125,7 @@ FUSEOPT = $(FUSEOPT_t85_DISABLERESET)
 #
 # Fuse high byte ("no reset": external reset disabled, can't program through SPI anymore)
 # 0x5d = 0 1 0 1   1 1 0 1
-#        ^ ^ ^ ^   ^ \-+-/ 
+#        ^ ^ ^ ^   ^ \-+-/
 #        | | | |   |   +------ BODLEVEL 2..0 (brownout trigger level -> 2.7V)
 #        | | | |   +---------- EESAVE (preserve EEPROM on Chip Erase -> not preserved)
 #        | | | +-------------- WDTON (watchdog timer always on -> disable)
@@ -179,7 +180,7 @@ readflash:
 
 fuse:
 	$(AVRDUDE) $(FUSEOPT)
-	
+
 disablereset:
 	$(AVRDUDE) $(FUSEOPT_t85_DISABLERESET)
 
