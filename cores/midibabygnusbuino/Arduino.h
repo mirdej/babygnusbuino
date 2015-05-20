@@ -32,7 +32,7 @@ void statusLedBlink(StatusLeds led);
 void doPeriodical(void);
 
 // this is from original midi_gnusb.h
-#define ADC_MUX_MASK			0x1F
+#define ADC_MUX_MASK			0x0F
 #define ADC_PRESCALE_DIV64		0x06	///< 0x06 -> CPU clk/64
 #define ADC_PRESCALE_MASK		0x07
 
